@@ -9,9 +9,13 @@ public class Iperfer {
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+			String inputLine, outputLine;
+
+			outputLine = "1";
+			out.println(outputLine);
 			//Initiate contact with client
 			while((inputLine = in.readLine()) != null) {
-				outputLine = ___.processInput(inputLine);
+				outputLine = "1";
 				out.println(outputLine);
 				if (outputLine.equals("Bye."))
 					break;
@@ -36,7 +40,9 @@ public class Iperfer {
     			System.out.println("Server: " + fromServer);
     			if (fromServer.equals("Bye."))
         			break;
+			out.println("iii");
 		}
+
 
 	}
 

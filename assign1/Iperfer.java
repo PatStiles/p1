@@ -1,61 +1,59 @@
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 public class Iperfer {
 
 	private static void server(int port) {
 		System.out.println("Starting server on port: " + port); 	
+		
 		try {
 			//Estblish socket connection
-			ServerSocket serverSocket = new ServerSocket(portNumber);
+			ServerSocket serverSocket = new ServerSocket(port);
 			Socket clientSocket = serverSocket.accept();
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
-			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-			String inputLine, outputLine;
+			InputStream clientInputStream = clientSocket.getInputStream();
 
-			outputLine = "1";
-			out.println(outputLine);
-			//Initiate contact with client
-			while((inputLine = in.readLine()) != null) {
-				outputLine = "1";
-				out.println(outputLine);
-				if (outputLine.equals("Bye."))
-					break;
+			while (!clientSocket.isClosed()) {
+				byte[] message = clientInputStream.readAllBytes();
+				System.out.println(message.length);
 			}
+
+			serverSocket.close();
 		} catch(Exception e) {
 			System.out.println(e);
-
 		}
 	}
 
 	private static void client(String hostName, int portNumber, int time) {
-		System.out.println("Startin client on port: " + portNumber + ", with name: " + hostname + " for " + time + "sec");	
+		System.out.println("Starting client on port: " + portNumber + ", with name: " + hostName + " for " + time + "sec");	
+		
 		try {
-			Socket clientSocket = new Socket(hostName, portNumber);
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
-			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+			Socket socket = new Socket(hostName, portNumber);
+			OutputStream socketOutputStream = socket.getOutputStream();
+
+			long start = System.currentTimeMillis();
+			while (System.currentTimeMillis() - start < time * 1000) {
+				byte[] message = new byte[1000];
+				socketOutputStream.write(message);
+			}
+
+			socket.close();
 		} catch(Exception e) {
 			System.out.println(e);
-
 		}
-		while ((fromServer = in.readLine()) != null) {
-    			System.out.println("Server: " + fromServer);
-    			if (fromServer.equals("Bye."))
-        			break;
-			out.println("iii");
-		}
-
-
 	}
 
 	public static void main(String[] args) {
-
-		if(args.length < 3) {
+		if (args.length < 3) {
 			System.out.println("Error: missing or additional arguments");
 		} else {
 			switch(args[0]) {
 				case "-c":
 					if(args.length == 7 && args[1].equals("-h") && args[3].equals("-p") && args[5].equals("-t")){
 						if(Integer.parseInt(args[4]) >= 1024 && Integer.parseInt(args[4]) <= 65535){
-							client(args[2],Integer.parseInt(args[4]),Integer.parseInt(args[6]));
+							client(args[2], Integer.parseInt(args[4]), Integer.parseInt(args[6]));
 							break;
 						} else {
 							System.out.println("Error: port number must be in the range 1024 to 65535");

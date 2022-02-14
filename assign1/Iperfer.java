@@ -1,12 +1,15 @@
+import java.net.*;
+import java.io.*;
+
 public class Iperfer {
 
-	private static void server(int port) {
-		System.out.println("Starting server on port: " + port); 	
+	private static void server(int portNumber) {
+		System.out.println("Starting server on port: " + portNumber); 	
 		try {
 			//Estblish socket connection
 			ServerSocket serverSocket = new ServerSocket(portNumber);
 			Socket clientSocket = serverSocket.accept();
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
 			String inputLine, outputLine;
@@ -20,27 +23,32 @@ public class Iperfer {
 				if (outputLine.equals("Bye."))
 					break;
 			}
-		} catch(Exception e) {
+			serverSocket.close();
+		} catch(IOException e) {
 			System.out.println(e);
 
 		}
 	}
 
 	private static void client(String hostName, int portNumber, int time) {
-		System.out.println("Startin client on port: " + portNumber + ", with name: " + hostname + " for " + time + "sec");	
+		System.out.println("Startin client on port: " + portNumber + ", with name: " + hostName + " for " + time + "sec");	
 		try {
 			Socket clientSocket = new Socket(hostName, portNumber);
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		} catch(Exception e) {
+			
+			String fromServer;
+
+			while ((fromServer = in.readLine()) != null) {
+    				System.out.println("Server: " + fromServer);
+    				if (fromServer.equals("Bye."))
+        				break;
+				out.println("iii");
+			}
+
+		} catch(IOException e) {
 			System.out.println(e);
 
-		}
-		while ((fromServer = in.readLine()) != null) {
-    			System.out.println("Server: " + fromServer);
-    			if (fromServer.equals("Bye."))
-        			break;
-			out.println("iii");
 		}
 
 

@@ -7,7 +7,7 @@ public class Iperfer {
 
 	private static void server(int port) {
 		System.out.println("Starting server on port: " + port); 		
-		int total = 0;
+		long total = 0;
 		long start, end;
 
 		try {
@@ -19,15 +19,14 @@ public class Iperfer {
 			System.out.println("Connected");	
 			byte[] buffer = new byte[1000];
 
-			int temp;
+			long temp;
 			start = System.currentTimeMillis();
 			while ((temp = clientInputStream.read(buffer)) != -1) {
 				total += temp;
 			}
 			end = System.currentTimeMillis();
 			serverSocket.close();
-			long time = (end - start)/1000;
-			System.out.println("received=" + (total/1000) + " KB " + "rate=" + (((total* 8)/1000000)/time) + " Mbps ");
+			System.out.println("received=" + (total/1000) + " KB rate=" + (double)(((total * 8)/((end - start)/1000))/1000000) + " Mbps");
 		} catch(Exception e) {
 			System.out.println(e);
 		}
@@ -41,7 +40,7 @@ public class Iperfer {
 			OutputStream socketOutputStream = socket.getOutputStream();
 
 			System.out.println("Connected");
-			int total = 0;
+			long total = 0;
 			long start = System.currentTimeMillis();
 			while (System.currentTimeMillis() - start < time * 1000) {
 				byte[] message = new byte[1000];
@@ -49,8 +48,9 @@ public class Iperfer {
 				socketOutputStream.flush();
 				total += message.length;
 			}
+			long end = System.currentTimeMillis();
 			socket.close();
-			System.out.println("sent=" + (total/1000) + " KB " + "rate=" + (((total * 8)/1000000)/time) + " Mbps ");
+			System.out.println("received=" + (total/1000) + " KB rate=" + (double)(((total * 8)/((end - start)/1000))/1000000) + " Mbps");
 		} catch(Exception e) {
 			System.out.println(e);
 		}

@@ -1,13 +1,40 @@
-Q1:
 Prediction: 160 ms latency, 21 mbps throughput
 
 Result: 169.072 ms  avg latency, 21 mbps throughput
 
 The resulting latency is the sum of the latency for each link - L1, L2, and L3. The combined latency that we measured in Q1 was ~160ms, and the result matched our prediction. The resulting throughput is 21 mbps, which we measured in Q1 as the throughput for L1. L2 and L3 had higher throughputs of 41 mbps and 33 mbps respectively, but since the bandwidth of L1 can only carry 21 mbps, the throughput through all three links from h1 to h4 is 21 mbps as we predicted.
 
-Q2:
-
 Q3:
+
+Our prediction is that the latency for each pair will be the combined latency of each link between hosts, and the throughput will be split between the pairs since they're sneding data over the same path.
+
+Two pairs:
+
+h1 - h4 
+	Latency: 161.289 ms
+	Throughput: received=57.855.0 KB rate=21.0 Mbps
+
+
+h8 - h9
+	Latency: 161.896 ms 
+	Throughput: received=5174.0 KB rate=1.0 Mbps
+
+
+Three pairs:
+
+h1 - h4
+	Latency: 161.612 ms
+	Throughput: received=45679.0 KB rate=16.0 Mbps
+
+h8 - h9
+	Latency: 161.582 ms
+	Throughput: received=7252.0 KB rate=2.0 Mbps
+
+h7 - h10
+	Latency: 161.716 ms
+	Throughput: received=12199.0 KB rate=4.0 Mbps
+
+Our predictions were correct, although our results show that one pair is given more bandwidth than the other pairs trying to send data simultaneously which we hadn't specified.
 
 Q4:
 Prediction:

@@ -1,5 +1,17 @@
+Q1:
 Prediction: 160 ms latency, 21 mbps throughput
 
 Result: 169.072 ms  avg latency, 21 mbps throughput
 
-The resulting latency is the sum of the latency for each link - L!, L2, and L3. The combined latency that we measured in Q1 was ~160ms, and the result matched our prediction. The resulting throughput is 21 mbps, which we measured in Q1 as the throughput for L1. L2 and L3 had higher throughputs of 41 mbps and 33 mbps respectively, but since the bandwidth of L1 can only carry 21 mbps, the throughput through all three links from h1 to h4 is 21 mbps as we predicted.
+The resulting latency is the sum of the latency for each link - L1, L2, and L3. The combined latency that we measured in Q1 was ~160ms, and the result matched our prediction. The resulting throughput is 21 mbps, which we measured in Q1 as the throughput for L1. L2 and L3 had higher throughputs of 41 mbps and 33 mbps respectively, but since the bandwidth of L1 can only carry 21 mbps, the throughput through all three links from h1 to h4 is 21 mbps as we predicted.
+
+Q2:
+
+Q3:
+
+Q4:
+Prediction:
+	With multiple nodes communicating with different hosts across the network we would expect the latency and throughput of the network to be equal to or slightly smaller than the latency of the network without traffic. Therfore are prediction would be 160ms latency, 21 Mbps throughput.
+
+Results:
+	Based off our results running 2 benchmarks concurrently for throughput and latency our results corrobarated with our prediction. When run simultaneously the two connections between 

@@ -1,0 +1,15 @@
+Run 1:
+h1 (client) output:
+received=14482.0 KB rate=23.0 Mbps
+h4 (server) output:
+received=14482.0 KB rate=19.0 Mbps
+Run 2:
+h1 (client) output:
+received=12906.0 KB rate=20.0 Mbps
+h4 (server) output:
+received=12906.0 KB rate=17.0 Mbps
+Run 3:
+h1 (client) output:
+received=13775.0 KB rate=22.0 Mbps
+h4 (server) output:
+received=13775.0 KB rate=18.0 Mbps

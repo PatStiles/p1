@@ -10,15 +10,14 @@ Since L1 has the minimum latency of the connection we would expect it to be the 
 
 Result: ~162.079 ms  avg latency, 21 Mbps throughput
 
-The resulting latency is the sum of the latency for each link - L1, L2, and L3. The combined latency that we measured in Q1 was ~160ms, and the result matched our prediction. The resulting throughput is 21 mbps, which we measured in Q1 as the throughput for L1 L2 and L3 had higher throughputs of 41 mbps and 33 mbps respectively, but since the bandwidth of L1 can only carry 21 mbps, the throughput through all three links from h1 to h4 is 21 mbps due to the a network bottleneck as we predicted.
+The resulting latency is the sum of the latency for each link - L1, L2, and L3. The combined latency that we measured in Q1 was ~160ms, and the result matched our prediction. The resulting throughput is 21 mbps, which we measured in Q1 as the throughput for L1 L2 and L3 had higher throughputs of ~41 Mbps and ~23 Mbps respectively, but since the bandwidth of L1 can only carry ~21 Mbps, the throughput through all three links from h1 to h4 is ~21 Mbps due to the a network bottleneck as we predicted.
 
 Q3:
 
-Our prediction is that the latency for each pair will be the combined latency of each link between hosts, and the throughput will be split between the pairs since they're sending data over the same path due to the multiplexing. this would result in no change in the overall latency, but a splitting of the throughput through shared links between the connections of the bandwidth of that respective connection.
-In particular, the resulting throughput of the two connections would sum to the total bandwidth of the link with the minimum throughput of the connection or bottleneck. 
+Our prediction is that the latency for each pair will be the combined latency of each link between hosts, and the throughput will be split between the pairs since they're sending data over the same path due to the multiplexing. This would result in no change in the overall latency, but a splitting of the throughput through shared links between the connections of the bandwidth of that respective connection.
+In particular, the resulting throughput of the two connections would sum to the total throughput of the link with the minimum throughput in the connection or bottleneck link. 
 
-Based on our results for Q1 we would expect the latency for the Two pair and Three pair scenario would be ~160ms. The throughputs of a two pair connection and three pari connection would be split across 2 ways or 3 ways respectively. These divisions are not guranteed to be equal.
-
+Based on our results for Q1 we would expect the latency for the Two pair and Three pair scenario would be ~160ms. The throughputs of a two pair connection and three pair connection would be split across 2 ways or 3 ways respectively. These divisions are not guranteed to be equal due to other network factors such as TCP traffic effects.
 Given the link with the minimum throughput is L1 = ~21 Mbps we would expect the resulting bandwidths of the two pair and three pair test to sum to this amount.
 
 
@@ -50,7 +49,7 @@ h7 - h10
 	Latency: 161.005 ms
 	Throughput: received=32505.0 KB rate=9.33 Mbps
 
-Our predictions were correct, the latencies of the two pair and three pair experiment corrobarate with our assumption that latencies would remain mostly uneffected by having additional connections on the network. In addition, our results corroborate with our prediction the throughput of the connections will by split via multiplexing across the connections. While, the average for the 2 pair sum to ~18 Mbps which is in line with our predicted results of ~21 Mbps. The average for the 3 pair sums to ~25.33 Mbps slightly larger than our expected value of ~21 Mbps. We believe this is do to the testing method of manual conducting the test of multiple connetions by individually calling them form the terminal which creates a time overhead for starting the test. This is supported by our collected data which sums to ~21 ms across trials.
+Our predictions were correct, the latencies of the two pair and three pair experiment corrobarate with our assumption that latencies would remain mostly uneffected by having additional connections on the network. In addition, our results corroborate with our prediction the throughput of the connections will by split via multiplexing across the connections. While, the average for the 2 pair sum to ~18 Mbps which is in line with our predicted results of ~21 Mbps. The average for the 3 pair sums to ~25.33 Mbps slightly larger than our expected value of ~21 Mbps. We believe this is do to the testing method of manual starting the test of multiple connections by individually calling them from the terminal which creates a time overhead for starting the test. This is supported by our collected data which sums to ~21 ms across trials but not when averaged.
 
 Q4:
 Prediction:
@@ -66,7 +65,7 @@ h5-h6:
 With multiple nodes communicating with different hosts across the network we would expect the increase in network traffic to negatively impact the latency and throughput of the mesurements in comparison to the test run in Q1. We would expect these traffic effects to manifest around links shared by these connections. In this case L2 which will multiplex to account for the two connections. We would expect the latency of the connection test of h1-h4 and h5-h6 would be equal to or slightly greater than that of the network without traffic as measured in Q1 and throughput would be expected to be equal to or slightly smaller than the throughput of the network without traffic as measured in Q1. However, these traffic effects would be minimal in comparison to the effects of the bottlenecks of the respective connections as multiplexing across L2 would mitigate the negative affects of traffic.
 
 Results:
-Our results agreed with our predictions as seen below expected. We expected network traffic effects to be observable (decreased throughput and increased latency) however these effects were not observed. This may be due to the L2 being able to multiplex the throughput of these connections do the bottleneck effect we expect to observe would be mitigated and the true network bottleneck would manifest within the respective connections due to other factors such as TCP traffic management.
+Our results agreed with our predictions as seen below expected. We expected network traffic effects to be observable (decreased throughput and increased latency) however these effects were not observed. This may be due to the suspected bottleneck in the shared multiplexed link between the connections (L2 with a throughput of ~40 Mbps) being approximately equal in throughput when multiplexed (~40 Mbps/2 = ~20 mbps) to the bottlenecks of the unshared links in the respective connections specifically L5 and L1 with measured throughputs of ~23 Mbps and ~21 Mbps. 
 
 h1-h4
 	Throughput (Avg. over 3 runs):received=51588.7 KB rate=~17.33 Mbps

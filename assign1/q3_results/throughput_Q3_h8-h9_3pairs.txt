@@ -1,0 +1,3 @@
+received=17495.0 KB rate=5.0 Mbps
+received=16239.0 KB rate=4.0 Mbps
+received=15663.0 KB rate=4.0 Mbps

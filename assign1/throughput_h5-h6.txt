@@ -1,15 +1,3 @@
-Run 1:
-h5 (client) output:
-received=14665.0 KB rate=23.0 Mbps
-h6 (server) output:
-received-14665.0 KB rate=19.0 Mbps
-Run 2:
-h5 (client) output:
-received=16141.0 KB rate=25.0 Mbps
-h6 (server) output:
-received=16141.0 KB rate=21.0 Mbps
-Run 3:
-h5 (client) output:
-received=12753.0 KB rate=20.0 Mbps
-h6 (server) output:
-received=12753.o KB rate=20.0 Mbps
+received=62373.0 KB rate=21.0 Mbps
+received=65570.0 KB rate=21.0 Mbps
+received=58708.0 KB rate=20.0 Mbps

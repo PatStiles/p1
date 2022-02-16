@@ -45,7 +45,7 @@ public class Iperfer {
 			}
 			long end = System.currentTimeMillis();
 			socket.close();
-			System.out.println("received=" + (double)(total/1000) + " KB rate=" + (double)(((total * 8)/((end - start)/1000))/1000000) + " Mbps");
+			System.out.println("sent=" + (double)(total/1000) + " KB rate=" + (double)(((total * 8)/((end - start)/1000))/1000000) + " Mbps");
 		} catch(Exception e) {
 			System.out.println(e);
 		}
@@ -66,7 +66,6 @@ public class Iperfer {
 							break;
 						}	
 					}
-					break;
 				case "-s":
 					if(args.length == 3 && args[1].equals("-p")){
 						if(Integer.parseInt(args[2]) >= 1024 && Integer.parseInt(args[2]) <= 65535){

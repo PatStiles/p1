@@ -1,0 +1,3 @@
+build:
+	javac Iperfer.java
+
